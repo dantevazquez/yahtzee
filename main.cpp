@@ -48,6 +48,7 @@ int main(void)
         drawDices(arrayOfDices);
         EndDrawing();
         //cout<<"Mouse x: " << GetMouseX() <<" Mouse y: " << GetMouseY() <<endl;
+        //Added a test comment
 
     }
 
