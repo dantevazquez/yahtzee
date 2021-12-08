@@ -22,7 +22,6 @@ int main(void)
     Dice arrayOfDices[NUM_DICES];
     initializeSlots(arrayOfDices);
     int gameStage = PRE_ROLL;
-    string playerTurn;
  
 
     int currentPlayer = 0;
@@ -34,14 +33,9 @@ int main(void)
         ClearBackground(DARKGRAY); //Draw Background
         drawScoreBoard(emptyScoreBoardTexture);
         drawRollButton();
-        playerTurn = "Player " + to_string(currentPlayer + 1) + "'s turn";
-        DrawText(playerTurn.c_str(), 0, 0, 14, RED); 
         userTurn(arrayOfDices,gameStage, currentPlayer, scoreBoard);
-        PrintScoreBoard(scoreBoard);
-        drawDices(arrayOfDices);
         EndDrawing();
-        //cout<<"Mouse x: " << GetMouseX() <<" Mouse y: " << GetMouseY() <<endl;
-        //Added a test comment
+        //cout<<"Mouse x: " << GetMouseX() <<" Mouse y: " << GetMouseY() <<endl
 
     }
 

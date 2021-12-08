@@ -3,6 +3,8 @@
 //THE GAME MANAGER
 void userTurn(Dice arrayOfDices[],int &gameStage, int &currentPlayer, ScoreBoardButton scoreBoard[][NUM_PLAYERS])
 {
+    string playerTurn = "Player " + to_string(currentPlayer + 1) + "'s turn";
+    DrawText(playerTurn.c_str(), 0, 0, 14, RED); 
     
     if (gameStage == PRE_ROLL)
     {
@@ -71,6 +73,8 @@ void userTurn(Dice arrayOfDices[],int &gameStage, int &currentPlayer, ScoreBoard
         gameStage = PRE_ROLL;
 
     }
+    PrintScoreBoard(scoreBoard);
+    drawDices(arrayOfDices);
 }
 
 
