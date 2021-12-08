@@ -1,12 +1,7 @@
 //Dante Vazquez Yahtzee!
 //All arrays start at 0. You can use Enums to represent to use a 1-10 system.
 #include "gameManager.h"
-#include "diceArray.h"
-#include "dice.h"
-#include "gameManager.h"
-#include "buttons.h"
-#include "buttonLocation.h"
-#include <string>
+
 using namespace std;
 
 int main(void)

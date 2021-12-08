@@ -2,7 +2,7 @@
 #define BUTTONS_H
 
 #include "buttonLocation.h"
-#include "dice.h"
+
 
 bool isMouseClickingButton (ButtonLocation buttonLocation);
 

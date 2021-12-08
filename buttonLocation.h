@@ -1,8 +1,7 @@
 #ifndef BUTTONLOCATION_H
 #define BUTTONLOCATION_H
 
-#include "include/raylib.h"
-#include <iostream>
+#include "dice.h"
 
 class ButtonLocation
 {
