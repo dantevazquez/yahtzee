@@ -20,45 +20,45 @@ bool isMouseClickingButton (ButtonLocation buttonLocation)
 
 bool diceGotClicked(int diceSlot)
 {
-   if(diceSlot == ONE)
+   if(diceSlot == SLOT_ONE)
     {
-        if(isMouseClickingButton(DICE_ONE))
+        if(isMouseClickingButton(DICE_ONE_BUTTON))
         {
             return true;
         }
         return false;
     }
 
-    if(diceSlot == TWO)
+    if(diceSlot == SLOT_TWO)
     {
-        if(isMouseClickingButton(DICE_TWO))
+        if(isMouseClickingButton(DICE_TWO_BUTTON))
         {
             return true;
         }
         return false;
     }
 
-    if(diceSlot == THREE)
+    if(diceSlot == SLOT_THREE)
     {
-        if(isMouseClickingButton(DICE_THREE))
+        if(isMouseClickingButton(DICE_THREE_BUTTON))
         {
             return true;
         }
         return false;
     }   
 
-    if(diceSlot == FOUR)
+    if(diceSlot == SLOT_FOUR)
     {
-        if(isMouseClickingButton(DICE_FOUR))
+        if(isMouseClickingButton(DICE_FOUR_BUTTON))
         {
             return true;
         }
         return false;
     }
 
-    if(diceSlot == FIVE)
+    if(diceSlot == SLOT_FIVE)
     {
-        if(isMouseClickingButton(DICE_FIVE))
+        if(isMouseClickingButton(DICE_FIVE_BUTTON))
         {
             return true;
         }

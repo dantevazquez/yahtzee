@@ -2,8 +2,7 @@
 #define BUTTONS_H
 
 #include "buttonLocation.h"
-#include "gameManager.h"
-
+#include "dice.h"
 
 bool isMouseClickingButton (ButtonLocation buttonLocation);
 

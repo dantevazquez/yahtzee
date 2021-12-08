@@ -114,6 +114,12 @@ void Dice::SetDiceSelection(bool isSelected)
     this->isSelected = isSelected;
 }
 
+int getRandomDiceNumber()
+{
+    return rand() % 6;
+}
+
+
 
 
 

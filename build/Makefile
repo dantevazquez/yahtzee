@@ -1,2 +1,2 @@
 default:
-	g++ ../main.cpp ../buttonLocation.cpp ../gameManager.cpp ../dice.cpp ../diceArray.cpp ../buttons.cpp -o test.exe -O2 -Wall -Wno-missing-braces -I ../include/ -L ../lib/ -lraylib -lopengl32 -lgdi32 -lwinmm
+	g++ ../_main.cpp ../gameManager.cpp ../scoreBoardButton.cpp ../diceArray.cpp ../buttons.cpp ../dice.cpp ../buttonLocation.cpp  -o test.exe -O2 -Wall -Wno-missing-braces -I ../include/ -L ../lib/ -lraylib -lopengl32 -lgdi32 -lwinmm

@@ -23,11 +23,11 @@ public:
 
 //List of locations of every button
 const ButtonLocation ROLL_BUTTON(80,620,320,780);
-const ButtonLocation DICE_ONE(40,304,104,368);
-const ButtonLocation DICE_TWO(168,304,232,368);
-const ButtonLocation DICE_THREE(296,304,360,368);
-const ButtonLocation DICE_FOUR(104,432,168,496);
-const ButtonLocation DICE_FIVE(232,432,296,496);
+const ButtonLocation DICE_ONE_BUTTON(40,304,104,368);
+const ButtonLocation DICE_TWO_BUTTON(168,304,232,368);
+const ButtonLocation DICE_THREE_BUTTON(296,304,360,368);
+const ButtonLocation DICE_FOUR_BUTTON(104,432,168,496);
+const ButtonLocation DICE_FIVE_BUTTON(232,432,296,496);
 const ButtonLocation ONES_BUTTON_P1(504,68,596,128);
 const ButtonLocation TWOS_BUTTON_P1(504,134,596,194);
 const ButtonLocation THREES_BUTTON_P1(504,200,596,260);

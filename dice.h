@@ -56,6 +56,9 @@ class Dice
         
 };
 
+int getRandomDiceNumber();
+
+
 enum DiceSlot
 {
     SLOT_ONE,

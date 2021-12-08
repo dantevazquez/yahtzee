@@ -1,7 +1,7 @@
 #ifndef DICEARRAY_H
 #define DICEARRAY_H
 
-#include "gameManager.h"
+#include "dice.h"
 #include "buttons.h"
 
 const int NUM_DICES = 5;
