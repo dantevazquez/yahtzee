@@ -312,7 +312,7 @@ int yahtzeeCheck(Dice arrayOfDices[])
 ////////////////////////////////////////////////////////////////////////////////
 int getRandomDiceNumber()
 {
-    return rand() % NUM_DICES;
+    return rand() % 6;
 }
 
 //THE GAME MANAGER
