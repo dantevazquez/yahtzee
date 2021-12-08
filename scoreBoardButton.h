@@ -1,9 +1,6 @@
 #ifndef __SCOREBOARDBUTTON_H__
 #define __SCOREBOARDBUTTON_H__
 
-#include "dice.h"
-#include "buttonLocation.h"
-#include "buttons.h"
 #include "diceArray.h"
 
 const int NUM_PLAYERS = 3;

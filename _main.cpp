@@ -2,8 +2,6 @@
 //All arrays start at 0. You can use Enums to represent to use a 1-10 system.
 #include "gameManager.h"
 
-using namespace std;
-
 int main(void)
 {
     const int SCREEN_WIDTH = 800;
