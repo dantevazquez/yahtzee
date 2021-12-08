@@ -14,7 +14,6 @@ void firstRoll(Dice arrayOfDices[NUM_DICES])
     {
         arrayOfDices[i].SetDiceImageAndNumber(getRandomDiceNumber());
         arrayOfDices[i].DrawDiceImage();
-
     }
 }
 

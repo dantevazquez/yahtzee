@@ -28,7 +28,7 @@ Dice::Dice(int diceSlot, int diceNumber, Texture2D diceNumberImage)
 void Dice::SetDiceImageAndNumber (int diceNumber)
 {   
     diceImage = dices[diceNumber];
-    diceNumber = diceNumber;
+    this->diceNumber = diceNumber;
 }
 
 void Dice::SetDiceSlot(int slot)

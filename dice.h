@@ -54,9 +54,6 @@ class Dice
         //This method prints the dice to the screen
         void DrawDiceImage();
         
-      
-        
-
 };
 
 enum DiceSlot

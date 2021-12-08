@@ -63,6 +63,7 @@ void ShowPotentialScores(int player, Dice arrayOfDices[], ScoreBoardButton score
 {
     for (int i = 0; i < NUM_OUTCOMES; i++)
     {
+
         if(getPotentialScores(intToOutcome(i), arrayOfDices) >= 0 && !scoreBoard[i][player].IsScoreSet())
         {
             scoreBoard[i][player].SetPotentialScore(to_string(getPotentialScores(intToOutcome(i), arrayOfDices)));
@@ -98,6 +99,7 @@ void CheckForScoreClick(int &player, int &gameStage, int setGameStageToo, Dice a
   
 int getPotentialScores(Outcomes outcome, Dice arrayOfDices[])
 {
+    
     if (outcome == ONES)
         return onesCheck(arrayOfDices); //finish this
 
@@ -111,28 +113,28 @@ int getPotentialScores(Outcomes outcome, Dice arrayOfDices[])
         return foursCheck(arrayOfDices); //finish this
     
     if (outcome == FIVES)
-        return foursCheck(arrayOfDices);
+        return fivesCheck(arrayOfDices);
     
     if (outcome == SIXS)
-        return foursCheck(arrayOfDices);
+        return sixsCheck(arrayOfDices);
     
     if (outcome == THREE_OF_A_KIND)
-        return foursCheck(arrayOfDices);
+        return threeOfAKindCheck(arrayOfDices);
     
     if (outcome == FOUR_OF_A_KIND)
-        return foursCheck(arrayOfDices);
+        return fourOfAKindCheck(arrayOfDices);
     
     if (outcome == STAIRS)
-        return foursCheck(arrayOfDices);
+        return stairsCheck(arrayOfDices);
     
     if (outcome == FULL_HOUSE)
-        return foursCheck(arrayOfDices);
+        return fullHouseCheck(arrayOfDices);
     
     if (outcome == YAHTZEE)
-        return foursCheck(arrayOfDices);  
+        return yahtzeeCheck(arrayOfDices);  
 
     
-    
+    cout<<"FATAL ERROR";
     return -1;
 }
 
@@ -205,61 +207,108 @@ ButtonLocation intToButtonLocation(int outcome, int player)
 
 int onesCheck(Dice arrayOfDices[])
 {
-    return 1;
-}
+    int ones = 0;
 
+    for (int i = 0; i < NUM_DICES; i++)
+    {
+        if(arrayOfDices[i].GetDiceNumber() == ONE)
+            ones += 1;
+        
+    }
+    return ones;
+    
+}
 
 int twosCheck(Dice arrayOfDices[])
 {
-    return 1;
+    int twos = 0;
 
+    for (int i = 0; i < NUM_DICES; i++)
+    {
+        if(arrayOfDices[i].GetDiceNumber() == TWO)
+            twos += 2;
+    }
+    return twos;
 }
+    
 int threesCheck(Dice arrayOfDices[])
 {
-    return 1;
+    int threes = 0;
+
+    for (int i = 0; i < NUM_DICES; i++)
+    {
+        if(arrayOfDices[i].GetDiceNumber() == THREE)
+            threes += 3;
+    }
+    return threes;
+
 
 }
 int foursCheck(Dice arrayOfDices[])
 {
-    return 1;
+    int fours = 0;
 
+    for (int i = 0; i < NUM_DICES; i++)
+    {
+        if(arrayOfDices[i].GetDiceNumber() == FOUR)
+            fours += 4;
+    }
+    return fours;
 }
 int fivesCheck(Dice arrayOfDices[])
 {
-    return 1;
+    int fives = 0;
 
+    for (int i = 0; i < NUM_DICES; i++)
+    {
+        if(arrayOfDices[i].GetDiceNumber() == FIVE)
+            fives += 5;
+    }
+    return fives;
 }
+        
 int sixsCheck(Dice arrayOfDices[])
 {
-    return 1;
+    int sixs = 0;
 
+    for (int i = 0; i < NUM_DICES; i++)
+    {
+        if(arrayOfDices[i].GetDiceNumber() == SIX)
+            sixs += 6;
+    }
+    return sixs;
 }
 int threeOfAKindCheck(Dice arrayOfDices[])
 {
-    return 1;
+    return 69;
 
 }
 int fourOfAKindCheck(Dice arrayOfDices[])
 {
-    return 1;
+    return 69;
 
 }
 int stairsCheck(Dice arrayOfDices[])
 {
-    return 1;
+    return 69;
 
 }
 int fullHouseCheck(Dice arrayOfDices[])
 {
-    return 1;
+    return 69;
 
 }
 int yahtzeeCheck(Dice arrayOfDices[])
 {
-    return 1;
-    
-}
 
+    for(int i = 0; i < NUM_DICES - 1; i++)
+    {
+        if(arrayOfDices[i].GetDiceNumber() != arrayOfDices[i + 1].GetDiceNumber())
+            return 0;
+    }
+    
+    return 60;
+}
 ////////////////////////////////////////////////////////////////////////////////
 int getRandomDiceNumber()
 {
