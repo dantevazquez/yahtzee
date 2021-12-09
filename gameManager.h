@@ -6,6 +6,7 @@
 #include "buttons.h"
 #include "diceArray.h"
 #include "scoreBoardButton.h"
+#include "scoreBoard.h"
 
 //Function generates and returns a random integer from 1-6
 void userTurn(Dice arrayOfDices[], int &gameStage, int &currentPlayer, ScoreBoardButton scoreBoard[][NUM_PLAYERS]);
