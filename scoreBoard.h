@@ -8,17 +8,28 @@ class ScoreBoard
 {
     private:
         int numPlayers;
+        int gameRound;
         //vector<vector<ScoreBoardButton>> scoreBoard;
         ScoreBoardButton scoreBoard[NUM_OUTCOMES][NUM_PLAYERS];
+
+        //vector<vector<ScoreBoardButton>> scoreBoard;
     public:
         ScoreBoard();
-        ScoreBoard(int numPlayers);
+        //ScoreBoard(int numPlayers);
         int GetNumPlayers();
         void SetNumPlayers(int numPlayers);
+
+        int GetGameRound();
+        void incrementGameRound();
 
         void ShowPotentialScores(int player, Dice arrayOfDices[]);
         void CheckForScoreClick(int &player, int &gameStage, int setGameStageToo, Dice arrayOfDices[]);
         void PrintScoreBoard();
+        int GetPlayerScore(int player);
+
+
+        void InitScoreBoard();
+        void ResetScoreBoard();
 
 
 };

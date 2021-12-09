@@ -1,7 +1,7 @@
 #include "gameManager.h"
 
 //THE GAME MANAGER
-void userTurn(Dice arrayOfDices[],int &gameStage, int &currentPlayer, ScoreBoard &scoreBoard)
+void userTurn(Dice arrayOfDices[],int &gameStage, int &currentPlayer, ScoreBoard &scoreBoard, Scene &scene)
 {
     string playerTurn = "Player " + to_string(currentPlayer + 1) + "'s turn";
     DrawText(playerTurn.c_str(), 0, 0, 14, RED); 
@@ -66,7 +66,7 @@ void userTurn(Dice arrayOfDices[],int &gameStage, int &currentPlayer, ScoreBoard
     if(gameStage == END_OF_TURN)
     {
         currentPlayer++;
-        if (currentPlayer >= NUM_PLAYERS) 
+        if (currentPlayer >= scoreBoard.GetNumPlayers()) 
             currentPlayer = 0;
             
         resetDices(arrayOfDices);
@@ -75,7 +75,71 @@ void userTurn(Dice arrayOfDices[],int &gameStage, int &currentPlayer, ScoreBoard
     }
     scoreBoard.PrintScoreBoard();
     drawDices(arrayOfDices);
+    if(scoreBoard.GetGameRound() == NUM_OUTCOMES * scoreBoard.GetNumPlayers())
+    {
+        scene = END;
+    }
+
 }
+
+void drawLeaderBoard(ScoreBoard &scoreBoard)
+{
+    string playerOneScoreStr = "Player One: " + to_string(scoreBoard.GetPlayerScore(0));
+    string playerTwoScoreStr = "Player Two: " + to_string(scoreBoard.GetPlayerScore(1));
+    string playerThreeScoreStr = "Player Three: " + to_string(scoreBoard.GetPlayerScore(2));
+
+    int p1 = scoreBoard.GetPlayerScore(0);
+    int p2 = scoreBoard.GetPlayerScore(1);
+    int p3 = scoreBoard.GetPlayerScore(2);
+
+    if ( p1 > p2 && p1 > p3 )
+    {
+        DrawText(playerOneScoreStr.c_str(), 280,260,16,BLACK); //1st
+        if(p2 > p3)
+        {
+            DrawText(playerTwoScoreStr.c_str(), 280,340,16,BLACK);//2nd
+            DrawText(playerThreeScoreStr.c_str(),280,420,16,BLACK);//3rd
+        }
+        else
+        {
+            DrawText(playerThreeScoreStr.c_str(), 280,340,16,BLACK);//2nd
+            DrawText(playerTwoScoreStr.c_str(),280,420,16,BLACK);//3rd
+        }
+    }
+    else if ( p2 > p1 && p2 > p3 )
+    {
+        DrawText(playerTwoScoreStr.c_str(), 280,260,16,BLACK);
+        if(p1 > p3)
+        {
+            DrawText(playerOneScoreStr.c_str(), 280,340,16,BLACK);//2nd
+            DrawText(playerThreeScoreStr.c_str(),280,420,16,BLACK);//3rd
+        }
+        else
+        {
+            DrawText(playerThreeScoreStr.c_str(), 280,340,16,BLACK);//2nd
+            DrawText(playerOneScoreStr.c_str(),280,420,16,BLACK);//3rd
+        }
+
+
+    }
+    else if ( p3 > p1 && p3 > p2 )
+    {
+        DrawText(playerThreeScoreStr.c_str(), 280,260,16,BLACK);
+        if(p1>p2)
+        {
+            DrawText(playerOneScoreStr.c_str(), 280,340,16,BLACK);//2nd
+            DrawText(playerTwoScoreStr.c_str(),280,420,16,BLACK);//3rd
+        }
+        else
+        {
+            DrawText(playerTwoScoreStr.c_str(), 280,340,16,BLACK);//2nd
+            DrawText(playerOneScoreStr.c_str(),280,420,16,BLACK);//3rd
+        }
+
+    }
+}
+
+
 
 
 

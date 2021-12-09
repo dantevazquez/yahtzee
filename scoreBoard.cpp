@@ -1,28 +1,15 @@
 #include "scoreBoard.h"
 
-
-
 ScoreBoard::ScoreBoard()
 {
-    numPlayers = 1;
+    numPlayers = 0;
+    gameRound = 0;
 
     for(int i = 0; i < NUM_OUTCOMES; i++)
     {
         for(int j = 0; j < NUM_PLAYERS; j++)
             scoreBoard[i][j].SetButtonLocation(intToButtonLocation(i,j));
     }
-}
-ScoreBoard::ScoreBoard(int numPlayers)
-{
-
-    this->numPlayers = numPlayers;
-    
-    for(int i = 0; i < NUM_OUTCOMES; i++)
-    {
-        for(int j = 0; j < NUM_PLAYERS; j++)
-            scoreBoard[i][j].SetButtonLocation(intToButtonLocation(i,j));
-    }
-
 }
 
 int ScoreBoard::GetNumPlayers()
@@ -34,15 +21,10 @@ void ScoreBoard::SetNumPlayers(int numPlayers)
     this->numPlayers = numPlayers;
 }
 
-// //SCOREBOARD FUNCTIONS (A SCOREBOARD IS A 2D ARRAY OF SCOREBOARDBUTTONS)
-// void ConstructScoreBoard(ScoreBoardButton scoreBoard[][NUM_PLAYERS])
-// {
-//     for(int i = 0; i < NUM_OUTCOMES; i++)
-//     {
-//         for(int j = 0; j < NUM_PLAYERS; j++)
-//             scoreBoard[i][j].SetButtonLocation(intToButtonLocation(i,j));
-//     }
-// }
+int ScoreBoard::GetGameRound()
+{
+    return gameRound;
+}
 
 void ScoreBoard::ShowPotentialScores(int player, Dice arrayOfDices[])
 {
@@ -75,12 +57,45 @@ void ScoreBoard::CheckForScoreClick(int &player, int &gameStage, int setGameStag
         {
             scoreBoard[i][player].SetScore(to_string(getPotentialScores(intToOutcome(i), arrayOfDices)));
             scoreBoard[i][player].SetClickState(false);
+            gameRound++;
             gameStage = setGameStageToo;
             drawDices(arrayOfDices);
             return;
         }
     }
 }
+
+int ScoreBoard::GetPlayerScore(int player)
+{
+    int score = 0;
+
+    for (int i = 0; i < NUM_OUTCOMES; i++)
+    {
+        if (scoreBoard[i][player].IsScoreSet())
+        {
+            score += stoi(scoreBoard[i][player].GetScore());
+
+        }
+    }
+    return score;
+}
+
+void ScoreBoard::ResetScoreBoard()
+{
+    for (int i = 0; i < NUM_OUTCOMES; i++)
+    {
+        for (int j = 0; j < NUM_PLAYERS; j++)
+        {
+            scoreBoard[i][j].ResetButton();
+        }
+    }
+
+    numPlayers = 0;
+    gameRound = 0;
+
+}
+
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -28,6 +28,7 @@ class ScoreBoardButton
         bool GetClickState();
         ButtonLocation GetButtonLocation();
         bool IsScoreSet();
+        void ResetButton();
 };
 
 
