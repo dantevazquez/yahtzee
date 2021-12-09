@@ -11,7 +11,8 @@ private:
 public:
     ButtonLocation();
     ButtonLocation(float lowX, float lowY, float highX, float highY);
-    ButtonLocation(float lowX, float lowY, float highX, float highY, int offsetX, int offsetY, int multiplier);
+    ButtonLocation(float lowX, float lowY, float highX, float highY, 
+                    int offsetX, int offsetY, int multiplier);
 
     int GetXLow();
     int GetYLow();
@@ -21,6 +22,8 @@ public:
 };
 
 //List of locations of every button
+
+//Game Scene
 const ButtonLocation ROLL_BUTTON(80,620,320,780);
 const ButtonLocation DICE_ONE_BUTTON(40,304,104,368);
 const ButtonLocation DICE_TWO_BUTTON(168,304,232,368);
@@ -60,6 +63,21 @@ const ButtonLocation FOUR_OF_A_KIND_BUTTON_P3(504,530,596,590,92,0,2);
 const ButtonLocation STAIRS_BUTTON_P3(504,596,596,656,92,0,2);
 const ButtonLocation FULL_HOUSE_BUTTON_P3(504,662,596,722,92,0,2);
 const ButtonLocation YAHTZEE_BUTTON_P3(504,728,596,788,92,0,2);
+
+//Winners Scene
+const ButtonLocation BUTTON_PLAY_AGAIN(220,500,380,580);
+const ButtonLocation BUTTON_EXIT(420,500,580,580);
+const ButtonLocation BUTTON_FIRST_PLACE(240,240,560,380);
+const ButtonLocation BUTTON_SECOND_PLACE(240,320,560,300);
+const ButtonLocation BUTTON_THIRD_PLACE(240,400,560,460);
+
+//Title screen
+const ButtonLocation BUTTON_ONE_PLAYER(150,500,250,600);
+const ButtonLocation BUTTON_TWO_PLAYER(350,500,450,600);
+const ButtonLocation BUTTON_THREE_PLAYER(550,500,650,600);
+
+
+
 
 
 #endif
