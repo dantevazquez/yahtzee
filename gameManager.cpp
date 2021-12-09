@@ -1,7 +1,7 @@
 #include "gameManager.h"
 
 //THE GAME MANAGER
-void userTurn(Dice arrayOfDices[],int &gameStage, int &currentPlayer, ScoreBoardButton scoreBoard[][NUM_PLAYERS])
+void userTurn(Dice arrayOfDices[],int &gameStage, int &currentPlayer, ScoreBoard &scoreBoard)
 {
     string playerTurn = "Player " + to_string(currentPlayer + 1) + "'s turn";
     DrawText(playerTurn.c_str(), 0, 0, 14, RED); 
@@ -22,10 +22,10 @@ void userTurn(Dice arrayOfDices[],int &gameStage, int &currentPlayer, ScoreBoard
     if (gameStage >= FIRST_ROLL && gameStage <= FIRST_CHECK)
     {
         //show potential score
-        ShowPotentialScores(currentPlayer, arrayOfDices, scoreBoard);
+        scoreBoard.ShowPotentialScores(currentPlayer, arrayOfDices);
 
         //if clicked 
-        CheckForScoreClick(currentPlayer, gameStage, END_OF_TURN, arrayOfDices, scoreBoard);
+        scoreBoard.CheckForScoreClick(currentPlayer, gameStage, END_OF_TURN, arrayOfDices);
 
         checkIfDiceGotClicked(arrayOfDices, gameStage, FIRST_CHECK);
     }
@@ -41,9 +41,9 @@ void userTurn(Dice arrayOfDices[],int &gameStage, int &currentPlayer, ScoreBoard
     //Look for dice clicks and score click
     if (gameStage >= SECOND_ROLL && gameStage <= SECOND_CHECK)
     {
-        ShowPotentialScores(currentPlayer, arrayOfDices, scoreBoard);
+        scoreBoard.ShowPotentialScores(currentPlayer, arrayOfDices);
 
-        CheckForScoreClick(currentPlayer, gameStage, END_OF_TURN, arrayOfDices, scoreBoard);
+        scoreBoard.CheckForScoreClick(currentPlayer, gameStage, END_OF_TURN, arrayOfDices);
 
 
         checkIfDiceGotClicked(arrayOfDices, gameStage, SECOND_CHECK);
@@ -59,8 +59,8 @@ void userTurn(Dice arrayOfDices[],int &gameStage, int &currentPlayer, ScoreBoard
 
     if(gameStage == THIRD_ROLL)
     {
-        ShowPotentialScores(currentPlayer, arrayOfDices, scoreBoard);
-        CheckForScoreClick(currentPlayer, gameStage, END_OF_TURN, arrayOfDices, scoreBoard);
+        scoreBoard.ShowPotentialScores(currentPlayer, arrayOfDices);
+        scoreBoard.CheckForScoreClick(currentPlayer, gameStage, END_OF_TURN, arrayOfDices);
     }
 
     if(gameStage == END_OF_TURN)
@@ -73,7 +73,7 @@ void userTurn(Dice arrayOfDices[],int &gameStage, int &currentPlayer, ScoreBoard
         gameStage = PRE_ROLL;
 
     }
-    PrintScoreBoard(scoreBoard);
+    scoreBoard.PrintScoreBoard();
     drawDices(arrayOfDices);
 }
 

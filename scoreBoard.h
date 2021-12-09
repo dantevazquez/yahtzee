@@ -2,7 +2,26 @@
 #define __SCOREBOARD_H__
 
 #include "scoreBoardButton.h"
+#include <vector>
 
+class ScoreBoard
+{
+    private:
+        int numPlayers;
+        //vector<vector<ScoreBoardButton>> scoreBoard;
+        ScoreBoardButton scoreBoard[NUM_OUTCOMES][NUM_PLAYERS];
+    public:
+        ScoreBoard();
+        ScoreBoard(int numPlayers);
+        int GetNumPlayers();
+        void SetNumPlayers(int numPlayers);
+
+        void ShowPotentialScores(int player, Dice arrayOfDices[]);
+        void CheckForScoreClick(int &player, int &gameStage, int setGameStageToo, Dice arrayOfDices[]);
+        void PrintScoreBoard();
+
+
+};
 enum Outcomes
 {
     ONES,
@@ -19,10 +38,10 @@ enum Outcomes
 
 };
 //SCOREBOARD FUNCTIONS
-void ConstructScoreBoard(ScoreBoardButton scoreBoard[][NUM_PLAYERS]);
-void ShowPotentialScores(int player, Dice arrayOfDices[], ScoreBoardButton scoreBoard[][NUM_PLAYERS]);
-void CheckForScoreClick(int &player, int &gameStage, int setGameStageToo, Dice arrayOfDices[], ScoreBoardButton scoreBoard[][NUM_PLAYERS]);
-void PrintScoreBoard(ScoreBoardButton scoreBoard[][NUM_PLAYERS]);
+// void ConstructScoreBoard(ScoreBoardButton scoreBoard[][NUM_PLAYERS]);
+// void ShowPotentialScores(int player, Dice arrayOfDices[], ScoreBoardButton scoreBoard[][NUM_PLAYERS]);
+// void CheckForScoreClick(int &player, int &gameStage, int setGameStageToo, Dice arrayOfDices[], ScoreBoardButton scoreBoard[][NUM_PLAYERS]);
+// void PrintScoreBoard(ScoreBoardButton scoreBoard[][NUM_PLAYERS]);
 int getPotentialScores(Outcomes outcome, Dice arrayOfDices[]);
 int onesCheck(Dice arrayOfDices[]);
 int twosCheck(Dice arrayOfDices[]);

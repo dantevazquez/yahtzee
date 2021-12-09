@@ -1,16 +1,50 @@
 #include "scoreBoard.h"
 
-//SCOREBOARD FUNCTIONS (A SCOREBOARD IS A 2D ARRAY OF SCOREBOARDBUTTONS)
-void ConstructScoreBoard(ScoreBoardButton scoreBoard[][NUM_PLAYERS])
+
+
+ScoreBoard::ScoreBoard()
 {
+    numPlayers = 1;
+
     for(int i = 0; i < NUM_OUTCOMES; i++)
     {
         for(int j = 0; j < NUM_PLAYERS; j++)
             scoreBoard[i][j].SetButtonLocation(intToButtonLocation(i,j));
     }
 }
+ScoreBoard::ScoreBoard(int numPlayers)
+{
 
-void ShowPotentialScores(int player, Dice arrayOfDices[], ScoreBoardButton scoreBoard[][NUM_PLAYERS])
+    this->numPlayers = numPlayers;
+    
+    for(int i = 0; i < NUM_OUTCOMES; i++)
+    {
+        for(int j = 0; j < NUM_PLAYERS; j++)
+            scoreBoard[i][j].SetButtonLocation(intToButtonLocation(i,j));
+    }
+
+}
+
+int ScoreBoard::GetNumPlayers()
+{
+    return numPlayers;
+}
+void ScoreBoard::SetNumPlayers(int numPlayers)
+{
+    this->numPlayers = numPlayers;
+}
+
+// //SCOREBOARD FUNCTIONS (A SCOREBOARD IS A 2D ARRAY OF SCOREBOARDBUTTONS)
+// void ConstructScoreBoard(ScoreBoardButton scoreBoard[][NUM_PLAYERS])
+// {
+//     for(int i = 0; i < NUM_OUTCOMES; i++)
+//     {
+//         for(int j = 0; j < NUM_PLAYERS; j++)
+//             scoreBoard[i][j].SetButtonLocation(intToButtonLocation(i,j));
+//     }
+// }
+
+void ScoreBoard::ShowPotentialScores(int player, Dice arrayOfDices[])
 {
     for (int i = 0; i < NUM_OUTCOMES; i++)
     {
@@ -23,7 +57,7 @@ void ShowPotentialScores(int player, Dice arrayOfDices[], ScoreBoardButton score
     }
 }
 
-void PrintScoreBoard(ScoreBoardButton scoreBoard[][NUM_PLAYERS])
+void ScoreBoard::PrintScoreBoard()
 {
     for (int i = 0; i < NUM_OUTCOMES; i++)
     {
@@ -32,7 +66,7 @@ void PrintScoreBoard(ScoreBoardButton scoreBoard[][NUM_PLAYERS])
     }
 }
 
-void CheckForScoreClick(int &player, int &gameStage, int setGameStageToo, Dice arrayOfDices[], ScoreBoardButton scoreBoard[][NUM_PLAYERS])
+void ScoreBoard::CheckForScoreClick(int &player, int &gameStage, int setGameStageToo, Dice arrayOfDices[])
 {
     for (int i = 0; i < NUM_OUTCOMES; i++)
     {
@@ -47,7 +81,9 @@ void CheckForScoreClick(int &player, int &gameStage, int setGameStageToo, Dice a
         }
     }
 }
-  
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int getPotentialScores(Outcomes outcome, Dice arrayOfDices[])
 {
     

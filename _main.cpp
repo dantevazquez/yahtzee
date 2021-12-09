@@ -15,8 +15,9 @@ int main(void)
     LoadImage("C:/Users/prems/Desktop/Games/FirstGame/resources/empty_scoreboard.png");
     
     Texture2D emptyScoreBoardTexture = LoadTextureFromImage(emptyScoreBoard);   
-    ScoreBoardButton scoreBoard[NUM_OUTCOMES][NUM_PLAYERS];  
-    ConstructScoreBoard(scoreBoard);         
+    //ScoreBoardButton scoreBoard[NUM_OUTCOMES][NUM_PLAYERS];  
+    //ConstructScoreBoard(scoreBoard);  
+    ScoreBoard scoreBoard(3);       
     
     //Initialize the 5 dices
     Dice arrayOfDices[NUM_DICES];
