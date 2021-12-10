@@ -14,27 +14,25 @@ class ScoreBoard
 
     public:
         ScoreBoard();
-        //ScoreBoard(int numPlayers);
-        int GetNumPlayers();
-        void SetNumPlayers(int numPlayers);
 
+        //Getters
+        int GetNumPlayers();
         int GetGameRound();
         int GetGameStage();
-        void SetGameStage(int gameStage);
-        void incrementGameRound();
+        int GetPlayerTotalScore(int player);
 
+        //Setters
+        void SetGameStage(int gameStage);
+        void SetNumPlayers(int numPlayers);
+        //ScoreBoard Methods
         void ShowPotentialScores(int player, Dice arrayOfDices[]);
         void CheckForScoreClick(int &player, Dice arrayOfDices[]);
         void PrintScoreBoard();
-        int GetPlayerScore(int player);
-
         void InitScoreBoard();
         void ResetScoreBoard();
         void checkIfDiceGotClicked(Dice arrayOfDices[], int setGameStageToo);
-
+        void DrawLeaderBoard();
 
 };
-
-void drawLeaderBoard(ScoreBoard &scoreBoard);
 
 #endif // __SCOREBOARD_H__

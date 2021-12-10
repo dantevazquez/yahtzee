@@ -48,13 +48,7 @@ void ScoreBoardButton::ResetButton()
 }
 
 string ScoreBoardButton::GetScore(){return score;}
-
 string ScoreBoardButton::GetPotentialScore(){return potentialScore;}
-
 bool ScoreBoardButton::GetClickState(){return isClickable;}
-
 ButtonLocation ScoreBoardButton::GetButtonLocation(){return location;}
-
 bool ScoreBoardButton::IsScoreSet(){return scoreSet;}
-
-////////////////////////////////////////////////////////////////////////////////

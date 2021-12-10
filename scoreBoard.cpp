@@ -14,81 +14,11 @@ ScoreBoard::ScoreBoard()
     
 }
 
-
-int ScoreBoard::GetNumPlayers()
-{
-    return numPlayers;
-}
-void ScoreBoard::SetNumPlayers(int numPlayers)
-{
-    this->numPlayers = numPlayers;
-}
-
-int ScoreBoard::GetGameRound()
-{
-    return gameRound;
-}
-
-void ScoreBoard::ShowPotentialScores(int player, Dice arrayOfDices[])
-{
-    for (int i = 0; i < NUM_OUTCOMES; i++)
-    {
-
-        if(getPotentialScores(intToOutcome(i), arrayOfDices) >= 0 && !scoreBoard[i][player].IsScoreSet())
-        {
-            if(getPotentialScores(intToOutcome(i), arrayOfDices) > 0 && gameStage == FIRST_ROLL && i > 5)
-            {
-                scoreBoard[i][player].SetPotentialScore(to_string(getPotentialScores(intToOutcome(i), arrayOfDices) + 5));
-                scoreBoard[i][player].DrawPotentialScore();
-            }
-            else
-            {
-                scoreBoard[i][player].SetPotentialScore(to_string(getPotentialScores(intToOutcome(i), arrayOfDices)));
-                scoreBoard[i][player].DrawPotentialScore();
-            }
-  
-        }
-    }
-}
-
-void ScoreBoard::PrintScoreBoard()
-{
-    for (int i = 0; i < NUM_OUTCOMES; i++)
-    {
-        for (int j = 0; j < NUM_PLAYERS; j++)
-            scoreBoard[i][j].DrawScore();
-    }
-}
-
-void ScoreBoard::CheckForScoreClick(int &player, Dice arrayOfDices[])
-{
-    for (int i = 0; i < NUM_OUTCOMES; i++)
-    {
-        if (isMouseClickingButton(scoreBoard[i][player].GetButtonLocation()) 
-        && scoreBoard[i][player].GetClickState() && !scoreBoard[i][player].IsScoreSet())
-        {
-
-            if(getPotentialScores(intToOutcome(i), arrayOfDices) > 0 && gameStage == FIRST_ROLL && i > 5)
-            {
-                scoreBoard[i][player].SetScore(to_string(getPotentialScores(intToOutcome(i), arrayOfDices) + 5));
-                scoreBoard[i][player].SetClickState(false);
-            }
-            else
-            {
-                scoreBoard[i][player].SetScore(to_string(getPotentialScores(intToOutcome(i), arrayOfDices)));
-                scoreBoard[i][player].SetClickState(false);
-            }
-
-
-            gameRound++;
-            gameStage = END_OF_TURN;
-            drawDices(arrayOfDices);
-            return;
-        }
-    }
-}
-
-int ScoreBoard::GetPlayerScore(int player)
+//Getters
+int ScoreBoard::GetNumPlayers(){return numPlayers;}
+int ScoreBoard::GetGameRound(){return gameRound;}
+int ScoreBoard::GetGameStage(){return gameStage;}
+int ScoreBoard::GetPlayerTotalScore(int player)
 {
     int score = 0;
 
@@ -97,12 +27,23 @@ int ScoreBoard::GetPlayerScore(int player)
         if (scoreBoard[i][player].IsScoreSet())
         {
             score += stoi(scoreBoard[i][player].GetScore());
-
         }
     }
     return score;
 }
 
+
+//Setters
+void ScoreBoard::SetNumPlayers(int numPlayers)
+{
+    this->numPlayers = numPlayers;
+}
+void ScoreBoard::SetGameStage(int gameStage)
+{
+    this->gameStage = gameStage;
+}
+
+//Scoreboard methods
 void ScoreBoard::ResetScoreBoard()
 {
     for (int i = 0; i < NUM_OUTCOMES; i++)
@@ -118,13 +59,55 @@ void ScoreBoard::ResetScoreBoard()
 
 }
 
-int ScoreBoard::GetGameStage()
+void ScoreBoard::ShowPotentialScores(int player, Dice arrayOfDices[])
 {
-    return gameStage;
+    for (int i = 0; i < NUM_OUTCOMES; i++)
+    {
+        //If potential scores found, display them
+        if(getPotentialScores(intToOutcome(i), arrayOfDices) >= 0 && !scoreBoard[i][player].IsScoreSet())
+        {
+            //Give player a 5 point bonus on special rolls
+            if(getPotentialScores(intToOutcome(i), arrayOfDices) > 0 && gameStage == FIRST_ROLL && i > 5)
+            {
+                scoreBoard[i][player].SetPotentialScore(to_string(getPotentialScores(intToOutcome(i), arrayOfDices) + 5));
+                scoreBoard[i][player].DrawPotentialScore();
+            }
+            else
+            {
+                scoreBoard[i][player].SetPotentialScore(to_string(getPotentialScores(intToOutcome(i), arrayOfDices)));
+                scoreBoard[i][player].DrawPotentialScore();
+            }
+  
+        }
+    }
 }
-void ScoreBoard::SetGameStage(int gameStage)
+
+void ScoreBoard::CheckForScoreClick(int &player, Dice arrayOfDices[])
 {
-    this->gameStage = gameStage;
+    for (int i = 0; i < NUM_OUTCOMES; i++)
+    {
+        //Give player a 5 point bonus on special rolls
+        if (isMouseClickingButton(scoreBoard[i][player].GetButtonLocation()) 
+        && scoreBoard[i][player].GetClickState() && !scoreBoard[i][player].IsScoreSet())
+        {
+            //If player got a point on a first roll on the big boy outcomes
+            if(getPotentialScores(intToOutcome(i), arrayOfDices) > 0 && gameStage == FIRST_ROLL && i > 5)
+            {
+                scoreBoard[i][player].SetScore(to_string(getPotentialScores(intToOutcome(i), arrayOfDices) + 5));
+                scoreBoard[i][player].SetClickState(false);
+            }
+            else
+            {
+                scoreBoard[i][player].SetScore(to_string(getPotentialScores(intToOutcome(i), arrayOfDices)));
+                scoreBoard[i][player].SetClickState(false);
+            }
+
+            gameRound++;
+            gameStage = END_OF_TURN;
+            drawDices(arrayOfDices);
+            return;
+        }
+    }
 }
 
 void ScoreBoard::checkIfDiceGotClicked(Dice arrayOfDices[NUM_DICES], int setGameStageToo)
@@ -141,16 +124,25 @@ void ScoreBoard::checkIfDiceGotClicked(Dice arrayOfDices[NUM_DICES], int setGame
     }
 }
 
-void drawLeaderBoard(ScoreBoard &scoreBoard)
+void ScoreBoard::PrintScoreBoard()
+{
+    for (int i = 0; i < NUM_OUTCOMES; i++)
+    {
+        for (int j = 0; j < NUM_PLAYERS; j++)
+            scoreBoard[i][j].DrawScore();
+    }
+}
+
+void ScoreBoard::DrawLeaderBoard()
 {
     BeginDrawing();
-    string playerOneScoreStr = "Player One: " + to_string(scoreBoard.GetPlayerScore(0));
-    string playerTwoScoreStr = "Player Two: " + to_string(scoreBoard.GetPlayerScore(1));
-    string playerThreeScoreStr = "Player Three: " + to_string(scoreBoard.GetPlayerScore(2));
+    string playerOneScoreStr = "Player One: " + to_string(GetPlayerTotalScore(0));
+    string playerTwoScoreStr = "Player Two: " + to_string(GetPlayerTotalScore(1));
+    string playerThreeScoreStr = "Player Three: " + to_string(GetPlayerTotalScore(2));
 
-    int p1 = scoreBoard.GetPlayerScore(0);
-    int p2 = scoreBoard.GetPlayerScore(1);
-    int p3 = scoreBoard.GetPlayerScore(2);
+    int p1 = GetPlayerTotalScore(0);
+    int p2 = GetPlayerTotalScore(1);
+    int p3 = GetPlayerTotalScore(2);
 
     if ( p1 > p2 && p1 > p3 )
     {

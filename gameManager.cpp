@@ -81,13 +81,9 @@ void drawGame(Dice arrayOfDices[],int &currentPlayer, ScoreBoard &scoreBoard,
     if (scoreBoard.GetGameStage() >= SECOND_ROLL && scoreBoard.GetGameStage() <= SECOND_CHECK)
     {
         scoreBoard.ShowPotentialScores(currentPlayer, arrayOfDices);
-
         scoreBoard.CheckForScoreClick(currentPlayer, arrayOfDices);
-
         scoreBoard.checkIfDiceGotClicked(arrayOfDices, SECOND_CHECK);
-
     }
-
     //third roll
     if (isMouseClickingButton(ROLL_BUTTON) && scoreBoard.GetGameStage() == SECOND_CHECK 
         && IsADiceSelected(arrayOfDices))
@@ -96,12 +92,13 @@ void drawGame(Dice arrayOfDices[],int &currentPlayer, ScoreBoard &scoreBoard,
         scoreBoard.SetGameStage(THIRD_ROLL);
     }
 
+    //Look for final score
     if(scoreBoard.GetGameStage() == THIRD_ROLL)
     {
         scoreBoard.ShowPotentialScores(currentPlayer, arrayOfDices);
         scoreBoard.CheckForScoreClick(currentPlayer, arrayOfDices);
     }
-
+    //Finish current player turn
     if(scoreBoard.GetGameStage() == END_OF_TURN)
     {
         currentPlayer++;
@@ -114,6 +111,8 @@ void drawGame(Dice arrayOfDices[],int &currentPlayer, ScoreBoard &scoreBoard,
     }
     scoreBoard.PrintScoreBoard();
     drawDices(arrayOfDices);
+
+    //If game is over, go to end scene
     if(scoreBoard.GetGameRound() == NUM_OUTCOMES * scoreBoard.GetNumPlayers())
     {
         scene = END;
@@ -127,7 +126,9 @@ void drawEnd(ScoreBoard &scoreBoard, Scene &scene, Texture2D &endScene)
     BeginDrawing();
     DrawTexture(endScene, 200, 200, RAYWHITE);
     ClearBackground(DARKGRAY); //Draw Background
-    drawLeaderBoard(scoreBoard);
+    //drawLeaderBoard(scoreBoard);
+    scoreBoard.DrawLeaderBoard();
+    
     if(isMouseClickingButton(BUTTON_EXIT))
     {
         CloseWindow();
