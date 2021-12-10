@@ -1,10 +1,46 @@
 #include "gameManager.h"
 
-//THE GAME MANAGER
-void userTurn(Dice arrayOfDices[],int &gameStage, int &currentPlayer, ScoreBoard &scoreBoard, Scene &scene)
+void drawTitle(ScoreBoard &scoreBoard, Scene &scene, Texture2D &titleScene)
 {
+    BeginDrawing();
+    DrawTexture(titleScene, 0, 0, RAYWHITE);
+
+    ClearBackground(DARKGRAY); //Draw Background
+
+    if(isMouseClickingButton(BUTTON_ONE_PLAYER))
+    {
+        scoreBoard.SetNumPlayers(1);
+        scene = GAME;
+    }
+    
+    if(isMouseClickingButton(BUTTON_TWO_PLAYER))
+    {
+
+        scoreBoard.SetNumPlayers(2);
+        scene = GAME;
+        
+    }
+    
+    if(isMouseClickingButton(BUTTON_THREE_PLAYER))
+    {
+
+        scoreBoard.SetNumPlayers(3);
+        scene = GAME;
+        
+    }
+    EndDrawing();
+    
+}
+
+void drawGame(Dice arrayOfDices[],int &gameStage, int &currentPlayer, ScoreBoard &scoreBoard, 
+                Scene &scene, Texture2D &board, Texture2D &rollButton)
+{
+    BeginDrawing();
+    drawScoreBoard(board);
+    DrawTexture(rollButton,70,520,RAYWHITE);
+    ClearBackground(DARKGRAY); //Draw Background
     string playerTurn = "Player " + to_string(currentPlayer + 1) + "'s turn";
-    DrawText(playerTurn.c_str(), 0, 0, 14, RED); 
+    DrawText(playerTurn.c_str(), 110, 20, 24, BLACK); 
     
     if (gameStage == PRE_ROLL)
     {
@@ -79,65 +115,33 @@ void userTurn(Dice arrayOfDices[],int &gameStage, int &currentPlayer, ScoreBoard
     {
         scene = END;
     }
+    EndDrawing();
 
 }
 
-void drawLeaderBoard(ScoreBoard &scoreBoard)
+void drawEnd(ScoreBoard &scoreBoard, Scene &scene, Texture2D &endScene)
 {
-    string playerOneScoreStr = "Player One: " + to_string(scoreBoard.GetPlayerScore(0));
-    string playerTwoScoreStr = "Player Two: " + to_string(scoreBoard.GetPlayerScore(1));
-    string playerThreeScoreStr = "Player Three: " + to_string(scoreBoard.GetPlayerScore(2));
-
-    int p1 = scoreBoard.GetPlayerScore(0);
-    int p2 = scoreBoard.GetPlayerScore(1);
-    int p3 = scoreBoard.GetPlayerScore(2);
-
-    if ( p1 > p2 && p1 > p3 )
+    BeginDrawing();
+    DrawTexture(endScene, 200, 200, RAYWHITE);
+    ClearBackground(DARKGRAY); //Draw Background
+    drawLeaderBoard(scoreBoard);
+    if(isMouseClickingButton(BUTTON_EXIT))
     {
-        DrawText(playerOneScoreStr.c_str(), 280,260,16,BLACK); //1st
-        if(p2 > p3)
-        {
-            DrawText(playerTwoScoreStr.c_str(), 280,340,16,BLACK);//2nd
-            DrawText(playerThreeScoreStr.c_str(),280,420,16,BLACK);//3rd
-        }
-        else
-        {
-            DrawText(playerThreeScoreStr.c_str(), 280,340,16,BLACK);//2nd
-            DrawText(playerTwoScoreStr.c_str(),280,420,16,BLACK);//3rd
-        }
+        CloseWindow();
     }
-    else if ( p2 > p1 && p2 > p3 )
-    {
-        DrawText(playerTwoScoreStr.c_str(), 280,260,16,BLACK);
-        if(p1 > p3)
-        {
-            DrawText(playerOneScoreStr.c_str(), 280,340,16,BLACK);//2nd
-            DrawText(playerThreeScoreStr.c_str(),280,420,16,BLACK);//3rd
-        }
-        else
-        {
-            DrawText(playerThreeScoreStr.c_str(), 280,340,16,BLACK);//2nd
-            DrawText(playerOneScoreStr.c_str(),280,420,16,BLACK);//3rd
-        }
 
+    if(isMouseClickingButton(BUTTON_PLAY_AGAIN))
+    {
+        scoreBoard.ResetScoreBoard();
+        scene = TITLE;
 
     }
-    else if ( p3 > p1 && p3 > p2 )
-    {
-        DrawText(playerThreeScoreStr.c_str(), 280,260,16,BLACK);
-        if(p1>p2)
-        {
-            DrawText(playerOneScoreStr.c_str(), 280,340,16,BLACK);//2nd
-            DrawText(playerTwoScoreStr.c_str(),280,420,16,BLACK);//3rd
-        }
-        else
-        {
-            DrawText(playerTwoScoreStr.c_str(), 280,340,16,BLACK);//2nd
-            DrawText(playerOneScoreStr.c_str(),280,420,16,BLACK);//3rd
-        }
+    EndDrawing();
 
-    }
 }
+
+
+
 
 
 

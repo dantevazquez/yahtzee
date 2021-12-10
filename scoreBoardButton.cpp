@@ -12,13 +12,13 @@ ScoreBoardButton::ScoreBoardButton()
 
 void ScoreBoardButton::DrawPotentialScore()
 {
-    DrawText(potentialScore.c_str(), location.GetXLow() + 46, location.GetYLow() + 30, 16, RED); 
+    DrawText(potentialScore.c_str(), location.GetXLow() + 40, location.GetYLow() + 24, 16, RED); 
     isClickable = true;  
 }
 
 void ScoreBoardButton::DrawScore()
 {
-    DrawText(score.c_str(), location.GetXLow() + 46, location.GetYLow() + 30, 16, WHITE); 
+    DrawText(score.c_str(), location.GetXLow() + 40, location.GetYLow() + 24, 16, WHITE); 
 }
 void ScoreBoardButton::SetScore(string score)
 {

@@ -4,7 +4,6 @@
 #include "include/raylib.h"
 #include <string>
 #include <iostream>
-
 using namespace std;
 
 class Dice
@@ -56,8 +55,8 @@ class Dice
         
 };
 
+//Generates a random dice number from 1-6
 int getRandomDiceNumber();
-
 
 enum DiceSlot
 {

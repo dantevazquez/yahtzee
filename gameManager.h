@@ -15,9 +15,9 @@ enum Scene
     END
 };
 
-//Function generates and returns a random integer from 1-6
-void userTurn(Dice arrayOfDices[], int &gameStage, int &currentPlayer, ScoreBoard &scoreBoard, Scene &scene);
-
-void drawLeaderBoard(ScoreBoard &scoreBoard);
+void drawTitle(ScoreBoard &scoreBoard, Scene &scene, Texture2D &title);
+void drawGame(Dice arrayOfDices[], int &gameStage, int &currentPlayer, 
+                ScoreBoard &scoreBoard, Scene &scene, Texture2D &board, Texture2D &roll);
+void drawEnd(ScoreBoard &ScoreBoard, Scene &scene, Texture2D &end);
 
 #endif

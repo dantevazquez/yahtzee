@@ -25,4 +25,6 @@ int ButtonLocation:: GetXHigh(){return buttonCoordsHigh.x;}
 
 int ButtonLocation:: GetYHigh(){return buttonCoordsHigh.y;}
 
+Vector2 ButtonLocation::GetCoordsLow(){return buttonCoordsLow;}
+
 
