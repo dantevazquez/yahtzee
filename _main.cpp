@@ -5,10 +5,10 @@
 
 int main(void)
 {
-    SetRandomSeed(time(0));
+    SetRandomSeed(time(0)); //Set seed for dice roller
     const int SCREEN_WIDTH = 800;
     const int SCREEN_HEIGHT = 800;
-    const int GAME_FPS = 60;
+    const int GAME_FPS = 30;
 
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Yahtzee!");
     SetTargetFPS(GAME_FPS); 
@@ -24,7 +24,6 @@ int main(void)
     ScoreBoard scoreBoard;       
     Dice arrayOfDices[NUM_DICES];
     initializeSlots(arrayOfDices);
-    //int gameStage = PRE_ROLL;
     int currentPlayer = 0;
     Scene scene = TITLE;
 
@@ -38,7 +37,7 @@ int main(void)
         }
         if(scene == GAME)
         {
-            drawGame(arrayOfDices,currentPlayer, scoreBoard, scene, board, rollButton);
+            drawGame(arrayOfDices, currentPlayer, scoreBoard, scene, board, rollButton);
         }
         if(scene == END)
         {
