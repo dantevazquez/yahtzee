@@ -12,13 +12,13 @@ ScoreBoardButton::ScoreBoardButton()
 
 void ScoreBoardButton::DrawPotentialScore()
 {
-    DrawText(potentialScore.c_str(), location.GetXLow() + 46, location.GetYLow() + 30, 14, RED); 
+    DrawText(potentialScore.c_str(), location.GetXLow() + 40, location.GetYLow() + 24, 16, RED); 
     isClickable = true;  
 }
 
 void ScoreBoardButton::DrawScore()
 {
-    DrawText(score.c_str(), location.GetXLow() + 46, location.GetYLow() + 30, 14, WHITE); 
+    DrawText(score.c_str(), location.GetXLow() + 40, location.GetYLow() + 24, 16, WHITE); 
 }
 void ScoreBoardButton::SetScore(string score)
 {
@@ -38,14 +38,17 @@ void ScoreBoardButton::SetButtonLocation(ButtonLocation inLocation)
     location = inLocation;
 }
 
+void ScoreBoardButton::ResetButton()
+{
+    score = "";
+    potentialScore = "";
+    isClickable = false;
+    scoreSet = false;
+    
+}
+
 string ScoreBoardButton::GetScore(){return score;}
-
 string ScoreBoardButton::GetPotentialScore(){return potentialScore;}
-
 bool ScoreBoardButton::GetClickState(){return isClickable;}
-
 ButtonLocation ScoreBoardButton::GetButtonLocation(){return location;}
-
 bool ScoreBoardButton::IsScoreSet(){return scoreSet;}
-
-////////////////////////////////////////////////////////////////////////////////

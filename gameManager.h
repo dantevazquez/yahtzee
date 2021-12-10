@@ -8,7 +8,22 @@
 #include "scoreBoardButton.h"
 #include "scoreBoard.h"
 
-//Function generates and returns a random integer from 1-6
-void userTurn(Dice arrayOfDices[], int &gameStage, int &currentPlayer, ScoreBoardButton scoreBoard[][NUM_PLAYERS]);
+//App Scenes
+enum Scene
+{
+    TITLE,
+    GAME,
+    END
+};
+
+//Title Scene
+void drawTitle(ScoreBoard &scoreBoard, Scene &scene, Texture2D &title);
+
+//Game Scene
+void drawGame(Dice arrayOfDices[], int &currentPlayer, 
+                ScoreBoard &scoreBoard, Scene &scene, Texture2D &board, Texture2D &roll);
+
+//End Scene
+void drawEnd(ScoreBoard &ScoreBoard, Scene &scene, Texture2D &end);
 
 #endif
