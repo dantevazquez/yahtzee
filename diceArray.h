@@ -38,7 +38,7 @@ void drawDices(Dice diceArray[]);
 void firstRoll(Dice arrayOfDices[]);
 void secondRoll(Dice arrayOfDices[]);
 void thirdRoll(Dice arrayOfDices[]);
-void checkIfDiceGotClicked(Dice arrayOfDices[], int &gameStage, int setGameStageToo);
+
 bool IsADiceSelected(Dice arrayOfDices[]);
 void resetDices(Dice arrayOfDices[]);
 void initializeSlots(Dice arrayOfDices[]);

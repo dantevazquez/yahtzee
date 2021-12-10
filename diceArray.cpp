@@ -47,19 +47,7 @@ void thirdRoll(Dice arrayOfDices[NUM_DICES])
                 
 }
 
-void checkIfDiceGotClicked(Dice arrayOfDices[NUM_DICES], int &gameStage, int setGameStageToo)
-{
-    for (int i = 0; i < NUM_DICES; i++)
-    {
-        if(diceGotClicked(i))
-        {
-            arrayOfDices[i].toggleDiceSelection();
-            gameStage = setGameStageToo;
-        }
-        arrayOfDices[i].DrawDiceImage();
 
-    }
-}
 
 bool IsADiceSelected(Dice arrayOfDices[NUM_DICES])
 {

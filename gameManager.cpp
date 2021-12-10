@@ -32,7 +32,7 @@ void drawTitle(ScoreBoard &scoreBoard, Scene &scene, Texture2D &titleScene)
     
 }
 
-void drawGame(Dice arrayOfDices[],int &gameStage, int &currentPlayer, ScoreBoard &scoreBoard, 
+void drawGame(Dice arrayOfDices[],int &currentPlayer, ScoreBoard &scoreBoard, 
                 Scene &scene, Texture2D &board, Texture2D &rollButton)
 {
     BeginDrawing();
@@ -42,71 +42,74 @@ void drawGame(Dice arrayOfDices[],int &gameStage, int &currentPlayer, ScoreBoard
     string playerTurn = "Player " + to_string(currentPlayer + 1) + "'s turn";
     DrawText(playerTurn.c_str(), 110, 20, 24, BLACK); 
     
-    if (gameStage == PRE_ROLL)
+    if (scoreBoard.GetGameStage() == PRE_ROLL)
     {
         drawDices(arrayOfDices);
     }
 
     //First Roll
-    if (isMouseClickingButton(ROLL_BUTTON) && gameStage == PRE_ROLL)
+    if (isMouseClickingButton(ROLL_BUTTON) && scoreBoard.GetGameStage() == PRE_ROLL)
     {
         firstRoll(arrayOfDices);
-        gameStage = FIRST_ROLL;
+        scoreBoard.SetGameStage(FIRST_ROLL);
+        
     }
 
     //Look for dice clicks or score click
-    if (gameStage >= FIRST_ROLL && gameStage <= FIRST_CHECK)
+    if (scoreBoard.GetGameStage() >= FIRST_ROLL && scoreBoard.GetGameStage() <= FIRST_CHECK)
     {
         //show potential score
         scoreBoard.ShowPotentialScores(currentPlayer, arrayOfDices);
 
         //if clicked 
-        scoreBoard.CheckForScoreClick(currentPlayer, gameStage, END_OF_TURN, arrayOfDices);
+        scoreBoard.CheckForScoreClick(currentPlayer,arrayOfDices);
 
-        checkIfDiceGotClicked(arrayOfDices, gameStage, FIRST_CHECK);
+        scoreBoard.checkIfDiceGotClicked(arrayOfDices, FIRST_CHECK);
+        
     }
 
     //second roll
-    if (isMouseClickingButton(ROLL_BUTTON) && gameStage == FIRST_CHECK 
+    if (isMouseClickingButton(ROLL_BUTTON) && scoreBoard.GetGameStage() == FIRST_CHECK 
         && IsADiceSelected(arrayOfDices))
     {
         secondRoll(arrayOfDices);
-        gameStage = SECOND_ROLL;
+        scoreBoard.SetGameStage(SECOND_ROLL);
+        
     }
     
     //Look for dice clicks and score click
-    if (gameStage >= SECOND_ROLL && gameStage <= SECOND_CHECK)
+    if (scoreBoard.GetGameStage() >= SECOND_ROLL && scoreBoard.GetGameStage() <= SECOND_CHECK)
     {
         scoreBoard.ShowPotentialScores(currentPlayer, arrayOfDices);
 
-        scoreBoard.CheckForScoreClick(currentPlayer, gameStage, END_OF_TURN, arrayOfDices);
+        scoreBoard.CheckForScoreClick(currentPlayer, arrayOfDices);
 
+        scoreBoard.checkIfDiceGotClicked(arrayOfDices, SECOND_CHECK);
 
-        checkIfDiceGotClicked(arrayOfDices, gameStage, SECOND_CHECK);
     }
 
     //third roll
-    if (isMouseClickingButton(ROLL_BUTTON) && gameStage == SECOND_CHECK 
+    if (isMouseClickingButton(ROLL_BUTTON) && scoreBoard.GetGameStage() == SECOND_CHECK 
         && IsADiceSelected(arrayOfDices))
     {
         thirdRoll(arrayOfDices);
-        gameStage = THIRD_ROLL;
+        scoreBoard.SetGameStage(THIRD_ROLL);
     }
 
-    if(gameStage == THIRD_ROLL)
+    if(scoreBoard.GetGameStage() == THIRD_ROLL)
     {
         scoreBoard.ShowPotentialScores(currentPlayer, arrayOfDices);
-        scoreBoard.CheckForScoreClick(currentPlayer, gameStage, END_OF_TURN, arrayOfDices);
+        scoreBoard.CheckForScoreClick(currentPlayer, arrayOfDices);
     }
 
-    if(gameStage == END_OF_TURN)
+    if(scoreBoard.GetGameStage() == END_OF_TURN)
     {
         currentPlayer++;
         if (currentPlayer >= scoreBoard.GetNumPlayers()) 
             currentPlayer = 0;
             
         resetDices(arrayOfDices);
-        gameStage = PRE_ROLL;
+        scoreBoard.SetGameStage(PRE_ROLL);
 
     }
     scoreBoard.PrintScoreBoard();

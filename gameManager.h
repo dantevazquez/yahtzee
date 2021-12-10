@@ -16,7 +16,7 @@ enum Scene
 };
 
 void drawTitle(ScoreBoard &scoreBoard, Scene &scene, Texture2D &title);
-void drawGame(Dice arrayOfDices[], int &gameStage, int &currentPlayer, 
+void drawGame(Dice arrayOfDices[], int &currentPlayer, 
                 ScoreBoard &scoreBoard, Scene &scene, Texture2D &board, Texture2D &roll);
 void drawEnd(ScoreBoard &ScoreBoard, Scene &scene, Texture2D &end);
 

@@ -4,6 +4,7 @@ ScoreBoard::ScoreBoard()
 {
     numPlayers = 0;
     gameRound = 0;
+    gameStage = 0;
 
     for(int i = 0; i < NUM_OUTCOMES; i++)
     {
@@ -35,8 +36,17 @@ void ScoreBoard::ShowPotentialScores(int player, Dice arrayOfDices[])
 
         if(getPotentialScores(intToOutcome(i), arrayOfDices) >= 0 && !scoreBoard[i][player].IsScoreSet())
         {
-            scoreBoard[i][player].SetPotentialScore(to_string(getPotentialScores(intToOutcome(i), arrayOfDices)));
-            scoreBoard[i][player].DrawPotentialScore();
+            if(getPotentialScores(intToOutcome(i), arrayOfDices) > 0 && gameStage == FIRST_ROLL && i > 5)
+            {
+                scoreBoard[i][player].SetPotentialScore(to_string(getPotentialScores(intToOutcome(i), arrayOfDices) + 5));
+                scoreBoard[i][player].DrawPotentialScore();
+            }
+            else
+            {
+                scoreBoard[i][player].SetPotentialScore(to_string(getPotentialScores(intToOutcome(i), arrayOfDices)));
+                scoreBoard[i][player].DrawPotentialScore();
+            }
+  
         }
     }
 }
@@ -50,18 +60,28 @@ void ScoreBoard::PrintScoreBoard()
     }
 }
 
-void ScoreBoard::CheckForScoreClick(int &player, int &gameStage, int setGameStageToo, Dice arrayOfDices[])
+void ScoreBoard::CheckForScoreClick(int &player, Dice arrayOfDices[])
 {
     for (int i = 0; i < NUM_OUTCOMES; i++)
     {
         if (isMouseClickingButton(scoreBoard[i][player].GetButtonLocation()) 
         && scoreBoard[i][player].GetClickState() && !scoreBoard[i][player].IsScoreSet())
         {
-            scoreBoard[i][player].SetScore(to_string(getPotentialScores(intToOutcome(i), arrayOfDices)));
-            scoreBoard[i][player].SetClickState(false);
+
+            if(getPotentialScores(intToOutcome(i), arrayOfDices) > 0 && gameStage == FIRST_ROLL && i > 5)
+            {
+                scoreBoard[i][player].SetScore(to_string(getPotentialScores(intToOutcome(i), arrayOfDices) + 5));
+                scoreBoard[i][player].SetClickState(false);
+            }
+            else
+            {
+                scoreBoard[i][player].SetScore(to_string(getPotentialScores(intToOutcome(i), arrayOfDices)));
+                scoreBoard[i][player].SetClickState(false);
+            }
+
 
             gameRound++;
-            gameStage = setGameStageToo;
+            gameStage = END_OF_TURN;
             drawDices(arrayOfDices);
             return;
         }
@@ -96,6 +116,29 @@ void ScoreBoard::ResetScoreBoard()
     numPlayers = 0;
     gameRound = 0;
 
+}
+
+int ScoreBoard::GetGameStage()
+{
+    return gameStage;
+}
+void ScoreBoard::SetGameStage(int gameStage)
+{
+    this->gameStage = gameStage;
+}
+
+void ScoreBoard::checkIfDiceGotClicked(Dice arrayOfDices[NUM_DICES], int setGameStageToo)
+{
+    for (int i = 0; i < NUM_DICES; i++)
+    {
+        if(diceGotClicked(i))
+        {
+            arrayOfDices[i].toggleDiceSelection();
+            gameStage = setGameStageToo;
+        }
+        arrayOfDices[i].DrawDiceImage();
+
+    }
 }
 
 void drawLeaderBoard(ScoreBoard &scoreBoard)

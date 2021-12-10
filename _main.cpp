@@ -24,7 +24,7 @@ int main(void)
     ScoreBoard scoreBoard;       
     Dice arrayOfDices[NUM_DICES];
     initializeSlots(arrayOfDices);
-    int gameStage = PRE_ROLL;
+    //int gameStage = PRE_ROLL;
     int currentPlayer = 0;
     Scene scene = TITLE;
 
@@ -38,7 +38,7 @@ int main(void)
         }
         if(scene == GAME)
         {
-            drawGame(arrayOfDices,gameStage, currentPlayer, scoreBoard, scene, board, rollButton);
+            drawGame(arrayOfDices,currentPlayer, scoreBoard, scene, board, rollButton);
         }
         if(scene == END)
         {

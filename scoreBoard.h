@@ -8,7 +8,8 @@ class ScoreBoard
 {
     private:
         int numPlayers;
-        int gameRound;    
+        int gameRound;
+        int gameStage;    
         ScoreBoardButton scoreBoard[NUM_OUTCOMES][NUM_PLAYERS];
 
     public:
@@ -18,15 +19,19 @@ class ScoreBoard
         void SetNumPlayers(int numPlayers);
 
         int GetGameRound();
+        int GetGameStage();
+        void SetGameStage(int gameStage);
         void incrementGameRound();
 
         void ShowPotentialScores(int player, Dice arrayOfDices[]);
-        void CheckForScoreClick(int &player, int &gameStage, int setGameStageToo, Dice arrayOfDices[]);
+        void CheckForScoreClick(int &player, Dice arrayOfDices[]);
         void PrintScoreBoard();
         int GetPlayerScore(int player);
 
         void InitScoreBoard();
         void ResetScoreBoard();
+        void checkIfDiceGotClicked(Dice arrayOfDices[], int setGameStageToo);
+
 
 };
 
