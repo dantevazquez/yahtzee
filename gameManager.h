@@ -8,6 +8,15 @@
 #include "scoreBoardButton.h"
 #include "scoreBoard.h"
 
+extern ScoreBoard scoreBoard;
+extern Font testFont;
+extern Texture2D board;
+extern Texture2D titleScene;
+extern Texture2D endScene;
+extern Texture2D rollButton;
+extern int currentPlayer;
+extern int scene;
+
 //App Scenes
 enum Scene
 {
@@ -16,14 +25,13 @@ enum Scene
     END
 };
 
+//Update Game
+void updateGameFrame(Dice arrayOfDices[]);
 //Title Scene
-void drawTitle(ScoreBoard &scoreBoard, Scene &scene, Texture2D &title);
-
+void drawTitle();
 //Game Scene
-void drawGame(Dice arrayOfDices[], int &currentPlayer, 
-                ScoreBoard &scoreBoard, Scene &scene, Texture2D &board, Texture2D &roll);
-
+void drawGame(Dice arrayOfDices[]);
 //End Scene
-void drawEnd(ScoreBoard &ScoreBoard, Scene &scene, Texture2D &end);
+void drawEnd();
 
 #endif
