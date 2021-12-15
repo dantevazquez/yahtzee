@@ -4,6 +4,8 @@
 #include "scoreBoardButton.h"
 #include <vector>
 
+extern Font testFont;
+
 class ScoreBoard
 {
     private:
