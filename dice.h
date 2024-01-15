@@ -22,12 +22,12 @@ class Dice
         Texture2D diceImage;
 
         //Images of each side of a dice.
-        Image test1 = LoadImage("C:/Users/prems/Desktop/Games/FirstGame/resources/dice_1.png");
-        Image test2 = LoadImage("C:/Users/prems/Desktop/Games/FirstGame/resources/dice_2.png");
-        Image test3 = LoadImage("C:/Users/prems/Desktop/Games/FirstGame/resources/dice_3.png");
-        Image test4 = LoadImage("C:/Users/prems/Desktop/Games/FirstGame/resources/dice_4.png");
-        Image test5 = LoadImage("C:/Users/prems/Desktop/Games/FirstGame/resources/dice_5.png");
-        Image test6 = LoadImage("C:/Users/prems/Desktop/Games/FirstGame/resources/dice_6.png");
+        Image test1 = LoadImage("../resources/dice_1.png");
+        Image test2 = LoadImage("../resources/dice_2.png");
+        Image test3 = LoadImage("../resources/dice_3.png");
+        Image test4 = LoadImage("../resources/dice_4.png");
+        Image test5 = LoadImage("../resources/dice_5.png");
+        Image test6 = LoadImage("../resources/dice_6.png");
         Texture2D dices[6];
        
 

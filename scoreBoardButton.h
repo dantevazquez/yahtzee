@@ -6,8 +6,6 @@
 const int NUM_PLAYERS = 3;
 const int NUM_OUTCOMES = 11;
 
-extern Font testFont;
-
 class ScoreBoardButton
 {
     private:

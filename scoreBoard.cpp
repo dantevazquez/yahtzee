@@ -67,7 +67,7 @@ void ScoreBoard::ShowPotentialScores(int player, Dice arrayOfDices[])
         if(getPotentialScores(intToOutcome(i), arrayOfDices) >= 0 && !scoreBoard[i][player].IsScoreSet())
         {
             //Give player a 5 point bonus on special rolls
-            if(getPotentialScores(intToOutcome(i), arrayOfDices) > 0 && (gameStage == FIRST_ROLL || gameStage == FIRST_CHECK) && i > 5)
+            if(getPotentialScores(intToOutcome(i), arrayOfDices) > 0 && gameStage == FIRST_ROLL && i > 5)
             {
                 scoreBoard[i][player].SetPotentialScore(to_string(getPotentialScores(intToOutcome(i), arrayOfDices) + 5));
                 scoreBoard[i][player].DrawPotentialScore();
@@ -91,7 +91,7 @@ void ScoreBoard::CheckForScoreClick(int &player, Dice arrayOfDices[])
         && scoreBoard[i][player].GetClickState() && !scoreBoard[i][player].IsScoreSet())
         {
             //If player got a point on a first roll on the big boy outcomes
-            if(getPotentialScores(intToOutcome(i), arrayOfDices) > 0 && (gameStage == FIRST_ROLL || gameStage == FIRST_CHECK) && i > 5)
+            if(getPotentialScores(intToOutcome(i), arrayOfDices) > 0 && gameStage == FIRST_ROLL && i > 5)
             {
                 scoreBoard[i][player].SetScore(to_string(getPotentialScores(intToOutcome(i), arrayOfDices) + 5));
                 scoreBoard[i][player].SetClickState(false);
@@ -146,72 +146,72 @@ void ScoreBoard::DrawLeaderBoard()
 
     if ( p1 > p2 && p1 > p3 )
     {
-        DrawTextEx(testFont, playerOneScoreStr.c_str(),Vector2{320,266},16, 0, BLACK); //1st
+        DrawText(playerOneScoreStr.c_str(), 280,260,16,BLACK); //1st
         if(p2 > p3)
         {
-            DrawTextEx(testFont, playerTwoScoreStr.c_str(),Vector2 {320,346},16, 0,BLACK);//2nd
-            DrawTextEx(testFont, playerThreeScoreStr.c_str(),Vector2 {320,426},16, 0,BLACK);//3rd
+            DrawText(playerTwoScoreStr.c_str(), 280,340,16,BLACK);//2nd
+            DrawText(playerThreeScoreStr.c_str(),280,420,16,BLACK);//3rd
         }
         else
         {
-            DrawTextEx(testFont, playerThreeScoreStr.c_str(),Vector2 {320,346},16, 0,BLACK);//2nd
-            DrawTextEx(testFont, playerTwoScoreStr.c_str(),Vector2 {320,426},16, 0,BLACK);//3rd
+            DrawText(playerThreeScoreStr.c_str(), 280,340,16,BLACK);//2nd
+            DrawText(playerTwoScoreStr.c_str(),280,420,16,BLACK);//3rd
         }
     }
     else if ( p2 > p1 && p2 > p3 )
     {
-        DrawTextEx(testFont, playerTwoScoreStr.c_str(),Vector2 {320,266},16, 0,BLACK);//1st
+        DrawText(playerTwoScoreStr.c_str(), 280,260,16,BLACK);//1st
         if(p1 > p3)
         {
-            DrawTextEx(testFont, playerOneScoreStr.c_str(),Vector2 {320,346},16, 0,BLACK);//2nd
-            DrawTextEx(testFont, playerThreeScoreStr.c_str(),Vector2 {320,426},16, 0,BLACK);//3rd
+            DrawText(playerOneScoreStr.c_str(), 280,340,16,BLACK);//2nd
+            DrawText(playerThreeScoreStr.c_str(),280,420,16,BLACK);//3rd
         }
         else
         {
-            DrawTextEx(testFont, playerThreeScoreStr.c_str(),Vector2 {320,346},16, 0,BLACK);//2nd
-            DrawTextEx(testFont, playerOneScoreStr.c_str(),Vector2 {320,426},16, 0,BLACK);//3rd
+            DrawText(playerThreeScoreStr.c_str(), 280,340,16,BLACK);//2nd
+            DrawText(playerOneScoreStr.c_str(),280,420,16,BLACK);//3rd
         }
 
 
     }
     else if ( p3 > p1 && p3 > p2 )
     {
-        DrawTextEx(testFont, playerThreeScoreStr.c_str(), Vector2{320, 266} ,16, 0,BLACK);//1st
+        DrawText(playerThreeScoreStr.c_str(), 280,260,16,BLACK);//1st
         if(p1>p2)
         {
-            DrawTextEx(testFont, playerOneScoreStr.c_str(),Vector2 {320, 346},16, 0,BLACK);//2nd
-            DrawTextEx(testFont, playerTwoScoreStr.c_str(),Vector2 {320, 426},16, 0,BLACK);//3rd
+            DrawText(playerOneScoreStr.c_str(), 280,340,16,BLACK);//2nd
+            DrawText(playerTwoScoreStr.c_str(),280,420,16,BLACK);//3rd
         }
         else
         {
-            DrawTextEx(testFont, playerTwoScoreStr.c_str(),Vector2 {320,346},16, 0,BLACK);//2nd
-            DrawTextEx(testFont, playerOneScoreStr.c_str(),Vector2 {320,426},16, 0,BLACK);//3rd
+            DrawText(playerTwoScoreStr.c_str(), 280,340,16,BLACK);//2nd
+            DrawText(playerOneScoreStr.c_str(),280,420,16,BLACK);//3rd
         }
 
     }
     else if (p1 == p2 && p1 > p3)
     {
-        DrawTextEx(testFont, playerOneScoreStr.c_str(),Vector2 {320,266},16, 0,BLACK); //1st
-        DrawTextEx(testFont, playerTwoScoreStr.c_str(),Vector2 {320,346},16, 0,BLACK);//2nd
-        DrawTextEx(testFont, playerThreeScoreStr.c_str(),Vector2 {320,426},16, 0,BLACK);//3rd
+        DrawText(playerOneScoreStr.c_str(), 280,260,16,BLACK); //1st
+        DrawText(playerTwoScoreStr.c_str(), 280,340,16,BLACK);//2nd
+        DrawText(playerThreeScoreStr.c_str(),280,420,16,BLACK);//3rd
     }
     else if (p1 == p3 && p1 > p2)
     {
-        DrawTextEx(testFont, playerOneScoreStr.c_str(),Vector2 {320,266},16, 0,BLACK); //1st
-        DrawTextEx(testFont, playerThreeScoreStr.c_str(),Vector2 {320,346},16, 0,BLACK);//2nd
-        DrawTextEx(testFont, playerTwoScoreStr.c_str(),Vector2 {320,426},16, 0,BLACK);//3rd
+        DrawText(playerOneScoreStr.c_str(), 280,260,16,BLACK); //1st
+        DrawText(playerThreeScoreStr.c_str(), 280,340,16,BLACK);//2nd
+        DrawText(playerTwoScoreStr.c_str(),280,420,16,BLACK);//3rd
     }
     else if (p2 == p3 && p2 > p1)
     {
-        DrawTextEx(testFont, playerTwoScoreStr.c_str(),Vector2 {320,266},16, 0,BLACK); //1st
-        DrawTextEx(testFont, playerThreeScoreStr.c_str(),Vector2 {320,346},16, 0,BLACK);//2nd
-        DrawTextEx(testFont, playerOneScoreStr.c_str(),Vector2 {320,426},16, 0,BLACK);//3rd
+        DrawText(playerTwoScoreStr.c_str(), 280,260,16,BLACK); //1st
+        DrawText(playerThreeScoreStr.c_str(), 280,340,16,BLACK);//2nd
+        DrawText(playerOneScoreStr.c_str(),280,420,16,BLACK);//3rd
     }
     else
     {
-        DrawTextEx(testFont, playerOneScoreStr.c_str(),Vector2 {320,266},16, 0,BLACK); //1st
-        DrawTextEx(testFont, playerTwoScoreStr.c_str(),Vector2 {320,346},16, 0,BLACK);//2nd
-        DrawTextEx(testFont, playerThreeScoreStr.c_str(),Vector2 {320,426},16, 0,BLACK);//3rd
+        DrawText(playerOneScoreStr.c_str(), 280,260,16,BLACK); //1st
+        DrawText(playerTwoScoreStr.c_str(), 280,340,16,BLACK);//2nd
+        DrawText(playerThreeScoreStr.c_str(),280,420,16,BLACK);//3rd
     }
 
 }

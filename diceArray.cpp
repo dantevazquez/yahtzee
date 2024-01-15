@@ -2,7 +2,7 @@
 
 void drawDices(Dice arrayOfDices[NUM_DICES])
 {
-    for (int i = 0; i < 6; i++)
+    for (int i = 0; i < NUM_DICES; i++)
     {
         arrayOfDices[i].DrawDiceImage();
     }  

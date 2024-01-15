@@ -1,21 +1,6 @@
 #include "gameManager.h"
 
-void updateGameFrame(Dice arrayOfDices[])
-{
-    if (scene == TITLE)
-    {
-        drawTitle();
-    }
-    if(scene == GAME)
-    {
-        drawGame(arrayOfDices);
-    }
-    if(scene == END)
-    {
-        drawEnd();
-    }
-}
-void drawTitle()
+void drawTitle(ScoreBoard &scoreBoard, Scene &scene, Texture2D &titleScene)
 {
     BeginDrawing();
     DrawTexture(titleScene, 0, 0, RAYWHITE);
@@ -47,19 +32,15 @@ void drawTitle()
     
 }
 
-void drawGame(Dice arrayOfDices[])
+void drawGame(Dice arrayOfDices[],int &currentPlayer, ScoreBoard &scoreBoard, 
+                Scene &scene, Texture2D &board, Texture2D &rollButton)
 {
     BeginDrawing();
     drawScoreBoard(board);
     DrawTexture(rollButton,70,520,RAYWHITE);
     ClearBackground(DARKGRAY); //Draw Background
-
-
     string playerTurn = "Player " + to_string(currentPlayer + 1) + "'s turn";
-    //DrawText(playerTurn.c_str(), 110, 20, 24, BLACK); 
-    DrawTextEx(testFont, playerTurn.c_str(), Vector2{72,20}, 28, 0, CLITERAL(Color){ 53, 53, 53, 255 });
-
-    
+    DrawText(playerTurn.c_str(), 110, 20, 24, BLACK); 
     
     if (scoreBoard.GetGameStage() == PRE_ROLL)
     {
@@ -140,7 +121,7 @@ void drawGame(Dice arrayOfDices[])
 
 }
 
-void drawEnd()
+void drawEnd(ScoreBoard &scoreBoard, Scene &scene, Texture2D &endScene)
 {
     BeginDrawing();
     DrawTexture(endScene, 200, 200, RAYWHITE);

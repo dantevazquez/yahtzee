@@ -2,7 +2,7 @@
 #define __SOUNDS_H__
 
 #include <string>
-#include "raylib.h"
+#include "include/raylib.h"
 using namespace std;
 
 enum GameSound

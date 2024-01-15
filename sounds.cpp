@@ -1,8 +1,8 @@
 #include "sounds.h"
 GameSounds::GameSounds()
 {
-    yahtzee = LoadSound("C:/Users/prems/Desktop/Games/FirstGame/resources/yahtzee_sound.wav");
-    introSong = LoadSound("C:/Users/prems/Desktop/Games/FirstGame/resources/intro_sound.wav");
+    yahtzee = LoadSound("../resources/yahtzee_sound.wav");
+    introSong = LoadSound("../resources/intro_sound.wav");
 
 }
 void GameSounds::UnloadGameSounds()
