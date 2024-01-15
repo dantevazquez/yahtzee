@@ -1,1 +1,4 @@
 /yahtzee dump
+lib/libraylib.a
+build/yahtzee
+build/yahtzee.exe
